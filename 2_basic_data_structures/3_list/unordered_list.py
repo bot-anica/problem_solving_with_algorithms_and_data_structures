@@ -102,13 +102,14 @@ class UnorderedList:
                 found = True
             else:
                 current = current.get_next()
+                current_index += 1
 
         if found:
             return current_index
         else:
-            return None
+            return -1
 
-    def pop(self, index):
+    def pop(self, index = None):
         found = False
         current_index = 0
         previous = None
@@ -116,17 +117,20 @@ class UnorderedList:
         while not found and not (current is None):
             if current_index == index:
                 found = True
-            elif not (current.get_next() is None):
+            else:
                 previous = current
                 current = current.get_next()
                 current_index += 1
 
+        target_item = current.get_data() if current else previous.get_data() if previous else None
         if not (self.head is None) and previous is None:
             self.head = current.get_next()
         elif index is None:
             previous.set_next(None)
         elif found:
             previous.set_next(current.get_next())
+
+        return target_item
 
 
 mylist = UnorderedList()
