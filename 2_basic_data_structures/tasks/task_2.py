@@ -24,10 +24,10 @@ class Stack:
 # 2. Измените алгоритм вычисления постфиксного выражения таким образом, чтобы он обрабатывал ошибки.
 
 
-def default_token_validation(token):
+def token_validation(token):
     if token.isalpha():
         raise ValueError(
-            "Expression shoul includes only integer numbers and math operators: +, -, *, /, ^")
+            "Expression should includes only integer numbers and math operators: +, -, *, /, ^")
 
     if "." in token:
         raise ValueError("You can use only integer numbers.")
@@ -42,7 +42,7 @@ def postfix_eval(postfix_expr):
     tokens_list = postfix_expr.split()
 
     for token in tokens_list:
-        default_token_validation(token)
+        token_validation(token)
 
         if token.isnumeric():
             op_stack.push(int(token))
@@ -78,4 +78,4 @@ def do_math(op, op1, op2):
         raise ValueError("You used unknown math operator. You can use only +, -, *, / and ^.")
 
 
-print(postfix_eval('7 8 + 3 2 + /'))
+print(postfix_eval('7 8 3 + / 3 2 + /'))
