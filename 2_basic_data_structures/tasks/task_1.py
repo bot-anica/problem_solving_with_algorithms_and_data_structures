@@ -54,10 +54,6 @@ def validate(ex_as_list):
             previous = current
         current = char
 
-        print("Previous:", previous)
-        print("Current:", current)
-        print()
-
         if index != 0:
             compare_char_types(previous, current)
 
