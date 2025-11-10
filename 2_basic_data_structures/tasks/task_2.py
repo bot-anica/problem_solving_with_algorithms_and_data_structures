@@ -1,27 +1,6 @@
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def is_empty(self):
-        return self.items == []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def pop(self):
-        return self.items.pop()
-
-    def peek(self):
-        return self.items[len(self.items) - 1]
-
-    def size(self):
-        return len(self.items)
-
-    def __str__(self):
-        return f"{",".join(self.items)}"
-
-
 # 2. Измените алгоритм вычисления постфиксного выражения таким образом, чтобы он обрабатывал ошибки.
+
+from data_structures import Stack
 
 
 def token_validation(token):
@@ -78,4 +57,4 @@ def do_math(op, op1, op2):
         raise ValueError("You used unknown math operator. You can use only +, -, *, / and ^.")
 
 
-print(postfix_eval('7 8 3 + / 3 2 + /'))
+print(postfix_eval('7 8 + 3 2 + /'))
