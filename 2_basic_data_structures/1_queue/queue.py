@@ -13,3 +13,6 @@ class Queue:
 
     def size(self):
         return len(self.items)
+
+    def __str__(self):
+        return ",".join(self.items)
