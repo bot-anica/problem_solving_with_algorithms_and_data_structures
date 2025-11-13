@@ -8,6 +8,7 @@ class UnorderedList:
     def __init__(self):
         self.head = None
         self.rear = None
+        # Добавил счетчик размера списка
         self.list_size = 0
 
     def is_empty(self):
@@ -21,9 +22,11 @@ class UnorderedList:
             self.rear = new_node
 
         self.head = new_node
+        # Увеличиваю счетчик размера списка
         self.list_size += 1
 
     def size(self):
+        # Сразу возвращаю значение, вместо подсчета количества элементов
         return self.list_size
 
     def search(self, item):
@@ -49,6 +52,7 @@ class UnorderedList:
                 current = current.get_next()
 
         if found:
+            # Уменьшаю счетчик размера списка
             self.list_size -= 1
             next_item = current.get_next()
             if previous is None:
@@ -58,6 +62,7 @@ class UnorderedList:
 
     def append(self, item):
         new_node = Node(item)
+        # Увеличиваю счетчик размера списка
         self.list_size += 1
         if self.rear is None:
             self.rear = new_node
@@ -76,6 +81,7 @@ class UnorderedList:
             current_index += 1
 
         new_node = Node(item)
+        # Увеличиваю счетчик размера списка
         self.list_size += 1
         if self.head is None:
             self.head = new_node
@@ -115,6 +121,9 @@ class UnorderedList:
                 current_index += 1
 
         target_item = current.get_data() if current else previous.get_data() if previous else None
+        # Только если нашел нужный элемент,
+        # то уменьшаю счетчик размера списка на 1
+        # и выполняю удаление целевого элемента
         if target_item:
             self.list_size -= 1
             if not (self.head is None) and previous is None:
