@@ -387,25 +387,3 @@ class UnorderedList:
             current = current.get_next()
 
         return f"[{", ".join(items_list)}]"
-
-
-ol = OrderedList()
-ol.add(3)
-ol.add(4)
-ol.add(1)
-ol.add(2)
-ol.add(3)
-ol.add(4)
-print(ol)
-print(ol.size())
-ol.remove(3)
-ol.remove(5)
-print(ol)
-print(ol.index(2))
-print(ol.index(5))
-print(ol.size())
-print(ol.pop(5))
-print(ol.pop())
-print(ol.pop(0))
-print(ol)
-print(ol.size())
