@@ -24,9 +24,9 @@ from data_structures import Node
 # а также чтобы добавить обязательный абстрактный метов add,
 # который нужно будет обязательно реализовать в классах наследниках
 class List(ABC):
-    def __init__(self, comparison=None):
+    def __init__(self, order=None):
         self.head = None
-        self.comparison = comparison
+        self.order = order
         self.list_size = 0
 
     def is_empty(self):
@@ -38,9 +38,9 @@ class List(ABC):
     # Я решил создать отдельную функцию,
     # которая будет использоваться для сравнения двух элементов при необходимости
     def compare_items(self, a, b):
-        if self.comparison == "ascent":
+        if self.order == "ascent":
             return a < b
-        elif self.comparison == "descent":
+        elif self.order == "descent":
             return a > b
         else:
             return False
@@ -56,7 +56,7 @@ class List(ABC):
         found = False
         current = self.head
         while not (current is None) and not found and not stop:
-            if not self.comparison is None and self.compare_items(item, current.get_data()):
+            if not self.order is None and self.compare_items(item, current.get_data()):
                 stop = True
             elif current.get_data() == item:
                 found = True
@@ -70,7 +70,7 @@ class List(ABC):
         previous = None
         current = self.head
         while not (current is None) and not stop:
-            if not self.comparison is None and self.compare_items(item, current.get_data()):
+            if not self.order is None and self.compare_items(item, current.get_data()):
                 stop = True
             elif current.get_data() == item:
                 found = True
@@ -94,7 +94,7 @@ class List(ABC):
         current_index = 0
         current = self.head
         while not found and not (current is None) and not stop:
-            if not self.comparison is None and self.compare_items(item, current.get_data()):
+            if not self.order is None and self.compare_items(item, current.get_data()):
                 stop = True
             elif current.get_data() == item:
                 found = True
@@ -153,8 +153,8 @@ class List(ABC):
 
 
 class OrderedList(List):
-    def __init__(self, comparison="ascent"):
-        super().__init__(comparison)
+    def __init__(self, order="ascent"):
+        super().__init__(order)
 
     def add(self, item):
         stop = False
@@ -186,7 +186,7 @@ class OrderedList(List):
 
 class UnorderedList(List):
     def __init__(self):
-        super().__init__(comparison=None)
+        super().__init__(order=None)
         self.rear = None
 
     def add(self, item):
