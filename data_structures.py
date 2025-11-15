@@ -365,15 +365,21 @@ class UnorderedList:
                 current = current.get_next()
                 current_index += 1
 
-        target_item = current.get_data() if current else previous.get_data() if previous else None
-        if target_item:
+        target_item = None
+
+        if found:
             self.list_size -= 1
-            if not (self.head is None) and previous is None:
+            target_item = current.get_data()
+            if previous is None:
                 self.head = current.get_next()
-            elif index is None:
-                previous.set_next(None)
-            elif found:
+            else:
                 previous.set_next(current.get_next())
+
+        if index is None:
+            if self.list_size > 0:
+                self.list_size -= 1
+                target_item = current.get_data()
+                previous.set_next(None)
 
         return target_item
 
