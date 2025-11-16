@@ -113,14 +113,13 @@ class List(ABC):
         current = self.head
         current_index = 0
 
-        while not found and not current.get_next() is None:
+        while (not index is None) and (not found) and (not current is None):
             if current_index == index:
                 found = True
             else:
-                if not current.get_next() is None:
-                    previous = current
-                    current = current.get_next()
-                    current_index += 1
+                previous = current
+                current = current.get_next()
+                current_index += 1
 
         target_item = None
 
@@ -135,8 +134,8 @@ class List(ABC):
         if index is None:
             if self.list_size > 0:
                 self.list_size -= 1
-                target_item = current.get_data()
-                previous.set_next(None)
+                target_item = self.head.get_data()
+                self.head = current.get_next()
 
         return target_item
 
