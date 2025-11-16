@@ -357,7 +357,8 @@ class UnorderedList:
         current_index = 0
         previous = None
         current = self.head
-        while not found and not (current is None):
+
+        while (not index is None) and (not found) and (not current is None):
             if current_index == index:
                 found = True
             else:
@@ -378,8 +379,8 @@ class UnorderedList:
         if index is None:
             if self.list_size > 0:
                 self.list_size -= 1
-                target_item = current.get_data()
-                previous.set_next(None)
+                target_item = self.head.get_data()
+                self.head = current.get_next()
 
         return target_item
 
