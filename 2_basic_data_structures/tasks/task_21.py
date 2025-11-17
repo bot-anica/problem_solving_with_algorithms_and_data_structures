@@ -189,17 +189,13 @@ class OrderedList(List):
                 current = current.get_next()
 
         new_node = Node(item)
-        new_node.set_next(self.head)
 
-        if self.head is None:
+        if previous is None:
+            new_node.set_next(self.head)
             self.head = new_node
         else:
-            if previous is None:
-                new_node.set_next(self.head)
-                self.head = new_node
-            else:
-                new_node.set_next(current)
-                previous.set_next(new_node)
+            new_node.set_next(current)
+            previous.set_next(new_node)
 
         self.list_size += 1
 
