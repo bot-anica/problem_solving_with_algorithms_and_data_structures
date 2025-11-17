@@ -39,9 +39,9 @@ class List(ABC):
     # которая будет использоваться для сравнения двух элементов при необходимости
     def compare_items(self, a, b):
         if self.order == "ascent":
-            return a < b
-        elif self.order == "descent":
             return a > b
+        elif self.order == "descent":
+            return a < b
         else:
             return False
 
@@ -64,7 +64,28 @@ class List(ABC):
                 current = current.get_next()
         return found
 
-    def remove(self, item):
+    def remove_first(self, item):
+        stop = False
+        found = False
+        previous = None
+        current = self.head
+        while not found and not current is None and not stop:
+            if not self.order is None and self.compare_items(item, current.get_data()):
+                stop = True
+            elif current.get_data() == item:
+                found = True
+            else:
+                previous = current
+                current = current.get_next()
+
+        if found:
+            self.list_size -= 1
+            if previous is None:
+                self.head = current.get_next()
+            else:
+                previous.set_next(current.get_next())
+
+    def remove_all(self, item):
         stop = False
         found = False
         previous = None
@@ -231,11 +252,11 @@ class UnorderedList(List):
 
 ol_1 = OrderedList()
 
-ol_1.add("aaa")
-ol_1.add("baa")
-ol_1.add("bbb")
-ol_1.add("aab")
-ol_1.add("aba")
+ol_1.add(1)
+ol_1.add(2)
+ol_1.add(3)
+ol_1.add(4)
+ol_1.add(5)
 print(ol_1)
 
 ol_2 = OrderedList("descent")
@@ -248,9 +269,9 @@ ol_2.add("aba")
 print(ol_2)
 
 ul = UnorderedList()
-ul.add(17)
-ul.add(9)
-ul.add(77)
-ul.add(40)
-ul.add(83)
+ul.add(1)
+ul.add(2)
+ul.add(3)
+ul.add(4)
+ul.add(5)
 print(ul)
