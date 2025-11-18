@@ -118,7 +118,7 @@ class Node:
         self.next = new_next
 
 
-class List(ABC):
+class LinkedList(ABC):
     def __init__(self, order=None):
         self.head = None
         self.order = order
@@ -223,13 +223,13 @@ class List(ABC):
         else:
             return -1
 
-    def pop(self, index=None):
+    def pop(self, index=0):
         found = False
         previous = None
         current = self.head
         current_index = 0
 
-        while (not index is None) and (not found) and (not current is None):
+        while (not found) and (not current is None):
             if current_index == index:
                 found = True
             else:
@@ -247,12 +247,6 @@ class List(ABC):
             else:
                 previous.set_next(current.get_next())
 
-        if index is None:
-            if self.list_size > 0:
-                self.list_size -= 1
-                target_item = self.head.get_data()
-                self.head = current.get_next()
-
         return target_item
 
     def __str__(self):
@@ -267,7 +261,7 @@ class List(ABC):
         return f"[{", ".join(items_list)}]"
 
 
-class OrderedList(List):
+class OrderedList(LinkedList):
     def __init__(self, order="ascent"):
         super().__init__(order)
 
@@ -295,7 +289,7 @@ class OrderedList(List):
         self.list_size += 1
 
 
-class UnorderedList(List):
+class UnorderedList(LinkedList):
     def __init__(self):
         super().__init__(order=None)
         self.rear = None
