@@ -331,4 +331,7 @@ class UnorderedList(LinkedList):
             previous.set_next(new_node)
         else:
             new_node.set_next(current)
-            previous.set_next(new_node)
+            if previous is None:
+                self.head = new_node
+            else:
+                previous.set_next(new_node)

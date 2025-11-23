@@ -91,7 +91,10 @@ class UnorderedList:
             previous.set_next(new_node)
         else:
             new_node.set_next(current)
-            previous.set_next(new_node)
+            if previous is None:
+                self.head = new_node
+            else:
+                previous.set_next(new_node)
 
     def index(self, item):
         found = False
@@ -132,6 +135,17 @@ class UnorderedList:
 
         return target_item
 
+    def __str__(self):
+        items_list = []
+
+        current = self.head
+
+        while not current is None:
+            items_list.append(str(current.get_data()))
+            current = current.get_next()
+
+        return f"[{", ".join(items_list)}]"
+
 
 mylist = UnorderedList()
 
@@ -141,6 +155,10 @@ mylist.add(17)
 mylist.add(93)
 mylist.add(26)
 mylist.add(54)
+
+mylist.insert(2000, 0)
+
+print(mylist)
 
 print(mylist.size())
 print(mylist.search(93))
