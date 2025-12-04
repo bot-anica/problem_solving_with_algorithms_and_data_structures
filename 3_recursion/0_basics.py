@@ -1,6 +1,4 @@
-def test_equal(val_1, val_2):
-    print(val_1 == val_2)
-
+from utils import test_equal
 
 # Конвертирование целого числа в строку по любому основанию от 2 до 16
 
